@@ -9,7 +9,7 @@ class atividade extends CI_Controller {
     public function index() {
         permission();
         
-        $data["title"] = "atividade";
+        $data["title"] = "Atividade";
         $data['atividadees'] = $this->atividade_model->index();
 
        
