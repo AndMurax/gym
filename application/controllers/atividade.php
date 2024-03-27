@@ -37,7 +37,13 @@ class Atividade extends CI_Controller {
     public function store(){
         permission();
 
-        $atividade = $_POST;
+        $atividade  = array(
+            "NomeAtividade" => $_POST['NomeAtividade'],
+            "DescricaoAtividade" => $_POST['DescricaoAtividade'],
+            "created_at" => date("Y-m-d H:i:s")   
+        );
+
+        print_r($atividade);
         $this->atividade_model->store($atividade);
 
         redirect("atividade");
@@ -60,7 +66,11 @@ class Atividade extends CI_Controller {
     public function update($id){
         permission();
 
-        $atividade = $_POST;
+        $atividade  = array(
+            "NomeAtividade" => $_POST['NomeAtividade'],
+            "DescricaoAtividade" => $_POST['DescricaoAtividade'],
+            "updated_at" => date("Y-m-d H:i:s")   
+        );
         $this->atividade_model->update($id ,$atividade);
 
         redirect("atividade");
@@ -70,8 +80,10 @@ class Atividade extends CI_Controller {
     public function delete($id){
         permission();
 
-        $atividade = $_POST;
-        $this->atividade_model->delete($id);
+        $atividade  = array(
+            "deleted_at" => date("Y-m-d")   
+        );
+        $this->atividade_model->delete($id, $atividade);
 
         redirect("atividade");
     }
