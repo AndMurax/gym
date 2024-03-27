@@ -27,8 +27,6 @@ class Dashboard extends CI_Controller{
         // exit;
     
 
-        
-
         $this->load->view('includes/header', $data);
         $this->load->view('includes/navbar', $data);
         // $this->load->view('includes/navTop', $data);

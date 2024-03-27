@@ -1,5 +1,5 @@
 <?php 
-class atividade extends CI_Controller {
+class Atividade extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
@@ -24,7 +24,7 @@ class atividade extends CI_Controller {
        public function new(){
         permission();
     
-        $data["title"] = "Cadastro atividade - GYM";
+        $data["title"] = "Cadastro Atividade - GYM";
         
         $this->load->view('includes/header', $data);
         $this->load->view('includes/navbar', $data);
@@ -46,7 +46,7 @@ class atividade extends CI_Controller {
     public function edit($id){
         permission();
      
-        $data["title"] = "Editar atividade - GYM";
+        $data["title"] = "Editar Atividade - GYM";
         $data["atividade"] = $this->atividade_model->show($id);
 
         $this->load->view('includes/header', $data);
