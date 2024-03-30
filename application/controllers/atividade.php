@@ -80,7 +80,7 @@ class Atividade extends CI_Controller {
     public function delete($id){
         permission();
 
-        $atividade  = array(
+        $atividade = array(
             "deleted_at" => date("Y-m-d")   
         );
         $this->atividade_model->delete($id, $atividade);
