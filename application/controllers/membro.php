@@ -71,8 +71,13 @@ class Membro extends CI_Controller{
         permission();
      
         $data["title"] = "Editar membro - GYM";
-        $data["membro"] = $this->membro_model->show($id);
+        $membro = $data["membro"] = $this->membro_model->show($id);
         $data['planostreinos'] = $this->planosTreino_model->index();
+
+        // echo '<pre>';
+        // print_r($membro);
+        // echo '<pre>';
+        // die();
 
         $this->load->view('includes/header', $data);
         $this->load->view('includes/navbar', $data);
@@ -85,9 +90,11 @@ class Membro extends CI_Controller{
     public function update($id){
         permission();
 
-        $membro = $_POST;
-        $this->membro_model->update($id ,$membro);
+       
 
+        $membro = $_POST;
+
+        $this->membro_model->update($id ,$membro);
         redirect("membro");
     }
 

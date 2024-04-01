@@ -1,5 +1,66 @@
 
+<script>
+$(document).ready(function(){
+  $('#cpfForm').submit(function(e) {
+    e.preventDefault(); // impede o envio do formulário
 
+    var cpf = $('#cpf').val().replace(/[^\d]+/g,''); // remove caracteres não numéricos
+
+    if(cpf == '' || cpf.length != 11) {
+      alert('CPF inválido');
+      return false;
+    }
+
+    // Verifica se todos os dígitos são iguais, o que torna o CPF inválido
+    var digits = cpf.split('').map(Number);
+    if (new Set(digits).size === 1) {
+      alert('CPF inválido');
+      return false;
+    }
+
+    // Validação dos dígitos verificadores
+    var sum = 0;
+    var mod;
+    for (var i = 1; i <= 9; i++) {
+      sum += parseInt(cpf.substring(i-1, i)) * (11 - i);
+    }
+    mod = (sum * 10) % 11;
+    if (mod === 10 || mod === 11) {
+      mod = 0;
+    }
+    if (mod !== parseInt(cpf.substring(9, 10))) {
+      alert('CPF inválido');
+      return false;
+    }
+
+    sum = 0;
+    for (var i = 1; i <= 10; i++) {
+      sum += parseInt(cpf.substring(i-1, i)) * (12 - i);
+    }
+    mod = (sum * 10) % 11;
+    if (mod === 10 || mod === 11) {
+      mod = 0;
+    }
+    if (mod !== parseInt(cpf.substring(10, 11))) {
+      alert('CPF inválido');
+      return false;
+    }
+
+    // Se chegou até aqui, o CPF é válido
+    alert('CPF válido');
+    return true;
+  });
+});
+
+
+$( "#Altura" ).blur(function() {
+    this.value = parseFloat(this.value).toFixed(2);
+});
+
+$( "#Peso" ).blur(function() {
+    this.value = parseFloat(this.value).toFixed(2);
+});
+</script>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2"></h1>
@@ -50,9 +111,21 @@
 						<div class="form-group">
 							<label for="genero">Genero:</label>
 							<select class="form-control" id="genero" name="genero">
-							<option selected value= "<?= isset($membro) ? $membro["Genero"] : null ?>" selected>Selecione:</option>
-							<option value="masculino">Masculino</option>
-							<option value="feminino">Feminino</option>
+							<?php if (isset($membro)) {
+								// Extrai o valor de 'Ativo' da primeira linha do resultado
+								$ativo = $membro['Genero'];
+								// Verifica se $ativo é igual a 1 ou 0 e define 'selected' para a opção correspondente
+								$masculinoSelecionado = ($genero == 'masculino') ? 'selected' : '';
+								$femeninoSelecionado = ($genero == 'femenino') ? 'selected' : '';
+							// Cria as opções do select com os valores do banco de dados
+								echo '<option value="masculino" ' . $masculinoSelecionado . '>Masculino</option>';
+								echo '<option value="Femenino" ' . $femeninoSelecionado . '>Femenino</option>';
+							} else {
+								echo '<option seleted value="selecione">..Selecione..</option>';
+								echo '<option value="masculino">Masculino</option>';
+								echo '<option value="femenino">Femenino</option>';
+							}
+						?>
 							</select>
 						</div>
 					</div>
@@ -97,27 +170,42 @@
 						</div>
 					</div>
 
-					<div class="col-md-6">
-						<div class="form-group">
-							<label for="Planos">Planos:</label>
-							<select class="form-control" id="planoID" name="planoID">
-							<option selected value="<?= isset($planostreinos["NomePlano"]) ? $planostreinos["NomePlano"] : null ?>"> Selecione: </option>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="Planos">Planos:</label>
+						<select class="form-control" id="planoID" name="planoID">
+							<option value="" selected>Selecione:</option>
 							<?php foreach ($planostreinos as $planostreino) : ?>
-								<option selected value="<?=$planostreino["PlanoID"]?>"><?= $planostreino["NomePlano"]?></option>
+								<?php 
+									$planoID = $planostreino["PlanoID"];
+									$nomePlano = $planostreino["NomePlano"];
+									$selected = isset($membro["PlanoID"]) && $membro["PlanoID"] == $planoID ? 'selected': '';
+								?>
+								<option value="<?= $planoID ?>" <?= $selected ?>><?= $nomePlano ?></option>
 							<?php endforeach; ?>
-			
-							</select>
-						</div>
+						</select>
 					</div>
-
+				</div>
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="genero">Ativo:</label>
+							<label for="Status">Status:</label>
 							<select class="form-control" id="Ativo" name="Ativo">
-							<option selected value= "<?= isset($membro) ? $membro["Ativo"] : null ?>" selected>Selecione:</option>
-							<option value="1">Ativo</option>
-							<option value="0">Inativo</option>
+						<?php if (isset($membro)) {
+								// Extrai o valor de 'Ativo' da primeira linha do resultado
+								$ativo = $membro['Ativo'];
+								// Verifica se $ativo é igual a 1 ou 0 e define 'selected' para a opção correspondente
+								$ativoSelecionado = ($ativo == 1) ? 'selected' : '';
+								$inativoSelecionado = ($ativo == 0) ? 'selected' : '';
+							// Cria as opções do select com os valores do banco de dados
+								echo '<option value="1" ' . $ativoSelecionado . '>Ativo</option>';
+								echo '<option value="0" ' . $inativoSelecionado . '>Inativo</option>';
+							} else {
+								echo '<option seleted value="selecione">..Selecione..</option>';
+								echo '<option value="1">Ativo</option>';
+								echo '<option value="0">Inativo</option>';
+							}
+						?>
 							</select>
 						</div>
 					</div>
