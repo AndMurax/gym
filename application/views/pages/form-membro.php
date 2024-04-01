@@ -54,11 +54,11 @@ $(document).ready(function(){
 
 
 $( "#Altura" ).blur(function() {
-    this.value = parseFloat(this.value).toFixed(2);
+    this.value = parseFloat(this.value).toFixed(3);
 });
 
 $( "#Peso" ).blur(function() {
-    this.value = parseFloat(this.value).toFixed(2);
+    this.value = parseFloat(this.value).toFixed(3);
 });
 </script>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">

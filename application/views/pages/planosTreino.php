@@ -34,9 +34,28 @@
 					<td> <a href="<?= base_url()?>index.php/planostreino/edit/<?= $planostreino['PlanoID']?>" class= "btn btn-warning">
 							<i class= "fas fa-pencil-alt "></i>
 						</a>
-						<a href="<?= base_url()?>index.php/planostreino/delete/<?= $planostreino['PlanoID']?>" class= "btn btn-danger">
+						<a href="#deleteModal" class= "btn btn-danger" data-toggle="modal" data-target="#deleteModal">
 							<i class= "fas fa-trash-alt "></i>
-						</a></td>
+						</a>
+
+						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" 		aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Excluir?</h5>
+									<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+									<div class="modal-body">Você tem certeza de que deseja deletar este item?</div>
+										<div class="modal-footer">
+													<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+													<a class="btn btn-primary" href="<?= base_url()?>index.php/planostreino/delete/<?= $planostreino['PlanoID']?>">Sim</a>
+										</div>
+							</div>
+						</div>
+					</div>
+				</td>
 				</tr>
 			<?php endforeach ?>
 			</tbody>
