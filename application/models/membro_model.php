@@ -29,7 +29,7 @@ class membro_model extends CI_model{
     
     public function get_total_membros(){
 
-      $query = $this->db->query("SELECT count(m.MembroID) as total FROM membro m;");
+      $query = $this->db->query("SELECT count(m.MembroID) as total FROM membro m where ativo = 1;");
    
         return $query->row_array();
 
