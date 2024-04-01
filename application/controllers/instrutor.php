@@ -20,7 +20,6 @@ class Instrutor extends CI_Controller {
         $this->load->view('includes/footer', $data);
     }
 
-
        public function new(){
         permission();
     
