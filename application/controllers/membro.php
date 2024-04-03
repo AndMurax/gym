@@ -87,14 +87,49 @@ class Membro extends CI_Controller{
 
     }
 
+
+    public function membroPlano($id){
+        permission();
+     
+        $data["title"] = "Editar membro - GYM";
+        $membro = $data["membro"] = $this->membro_model->show($id);
+        $data['planostreinos'] = $this->planosTreino_model->index();
+        $data['membroPlano'] = $this->membro_model->show_membro_plano($id);
+
+        // echo '<pre>';
+        // print_r($membro);
+        // echo '<pre>';
+        // die();
+
+        $this->load->view('includes/header', $data);
+        $this->load->view('includes/navbar', $data);
+        $this->load->view('pages/form-membroPlano', $data);
+        $this->load->view('includes/footer', $data);
+        $this->load->view('includes/scripts', $data);
+
+    }
+
+
     public function update($id){
         permission();
 
-       
+        if(isset($_POST['DataInicio'])){
+            $dataInicio = new DateTime($_POST['DataInicio']);
+            $membroPlano = array('MembroID' => $id,
+                            'PlanoID' => $_POST['PlanoID'],
+                            'DataInicio'=> $dataInicio->format('y-m-d'),
+                            'DataTermino' => $dataInicio->modify('+30 days')->format('y-m-d'));
 
-        $membro = $_POST;
+            // var_dump($membroPlano);
+            // die;
+        
+           $this->membro_model->set_membro_plano($membroPlano);
 
-        $this->membro_model->update($id ,$membro);
+        }else {
+            $membro = $_POST;
+            $this->membro_model->update($id ,$membro);
+        }
+        
         redirect("membro");
     }
 

@@ -21,6 +21,7 @@
     <!-- Custom styles for this template-->
     <link href="<?=base_url('application\views\css\sb-admin-2.min.css')?>" rel="stylesheet">
     <link href="<?=base_url('application\assets\datatables.min.css')?>" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
    
 
 

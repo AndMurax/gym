@@ -27,6 +27,9 @@
 						<a href="<?= base_url()?>index.php/membro/edit/<?= $membro['MembroID']?>" class= "btn btn-warning">
 							<i class= "fas fa-pencil-alt "></i>
 						</a>
+						<a href="<?= base_url()?>index.php/membro/membroPlano/<?= $membro['MembroID']?>" class= "btn btn-success">
+							<i class= "fas fa-solid fa-user"></i>
+						</a>
 						<a href="#deleteModal" class= "btn btn-danger" data-toggle="modal" data-target="#deleteModal">
 							<i class= "fas fa-trash-alt "></i>
 						</a>

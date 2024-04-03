@@ -6,7 +6,6 @@ class membro_model extends CI_model{
     public function index(){
 
       $query = $this->db->query(" SELECT * FROM Membro;");
-
       return $query->result_array();
       #return $this->db->get('membro')->result_array();
       
@@ -25,13 +24,11 @@ class membro_model extends CI_model{
 
     }
 
-
-    
     public function get_total_membros(){
 
       $query = $this->db->query("SELECT count(m.MembroID) as total FROM membro m where ativo = 1;");
    
-        return $query->row_array();
+      return $query->row_array();
 
     }
 
@@ -47,12 +44,27 @@ class membro_model extends CI_model{
       return $this->db->delete('membro');
     }
 
-
     public function verificar_cpf_cadastrado($cpf){
 
       //$query = $this->db->query("SELECT MembroID FROM `membro` WHERE CPF =;");
       return $this->db->get_where('membro', array('CPF'=> $cpf))->row_array();
       //return $query->row_array();
+
+    }
+
+    public function set_membro_plano(array $planoMembro){
+
+      // $query = $this->db->query("INSERT INTO `associacao_membro_plano` (`MembroID`, `PlanoID`, `DataInicio`, `DataTermino`) VALUES ("$planoMembro['MembroID']", '3', '2024-04-01', '2024-04-30')");
+      return $this->db->insert('associacao_membro_plano', $planoMembro);
+
+    }
+
+
+    public function show_membro_plano($id){
+
+      //$query = $this->db->query("SELECT * from Membro;");
+      return $this->db->get_where('associacao_membro_plano', array('MembroID'=> $id))->row_array();
+      //  return $query->row_array();
 
     }
 
