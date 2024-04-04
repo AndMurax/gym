@@ -12,22 +12,25 @@
 				<tr>
 					<th>#</th>
 					<th>Nome</th>
-					<th>CPF</th>
+					<th>Tempo Restante</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
-                <?php foreach($membros as $membro):?>
+                <?php foreach($membros as $membro):
+					$hoje = new DateTime(date("Y-m-d"));
+					$dataTermino = new DateTime($membro['DataTermino']);
+					?>
 				<tr>
 				<td><?=$membro['MembroID'] ?></td>
                     <td><?=$membro['Nome'] ?></td>
-                    <td><?=$membro['CPF'] ?></td>
+                    <td><?=$hoje->diff($dataTermino)->days?></td>
                  
 					<td>
 						<a href="<?= base_url()?>index.php/membro/edit/<?= $membro['MembroID']?>" class= "btn btn-warning">
 							<i class= "fas fa-pencil-alt "></i>
 						</a>
-						<a href="<?= base_url()?>index.php/membro/membroPlano/<?= $membro['MembroID']?>" class= "btn btn-success">
+						<a href="<?= base_url()?>index.php/membroPlano/edit/<?= $membro['MembroID']?>" class= "btn btn-success">
 							<i class= "fas fa-solid fa-user"></i>
 						</a>
 						<a href="#deleteModal" class= "btn btn-danger" data-toggle="modal" data-target="#deleteModal">

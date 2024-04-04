@@ -4,10 +4,10 @@
       </div>
 
 			<div class="col-md-12">
-			<?php if(isset($membro)) : ?>
-			 <form action="<?= base_url() ?>index.php/membro/update/<?= $membro['MembroID'] ?>" method="post" onsubimit="return ValidarCampos()">
+			<?php if(isset($membroPlano['DataInicio'])) : ?>
+			 <form action="<?= base_url() ?>index.php/MembroPlano/update/<?= $membro['MembroID'] ?>" method="post" onsubimit="return ValidarCampos()">
 			<?php else : ?>
-			 <form  action="<?= base_url() ?>index.php/membro/store" method="post" onsubimit="return ValidarCampos()">
+			 <form  action="<?= base_url() ?>index.php/MembroPlano/store/<?= $membro['MembroID'] ?>" method="post" onsubimit="return ValidarCampos()">
 			<?php endif ?>
 				<h1> Membro Plano de <?= $membro['Nome'];?></h1>
 					<div class="col-md-6">

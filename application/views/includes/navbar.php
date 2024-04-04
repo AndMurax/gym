@@ -93,7 +93,7 @@
                 <div class="modal-body">Selecione "Sair" para você sair do usuário.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="<?=base_url()?>index.php/login/logout">Sair</a>
+                    <a class="btn btn-danger" href="<?=base_url()?>index.php/login/logout">Sair</a>
                 </div>
             </div>
         </div>

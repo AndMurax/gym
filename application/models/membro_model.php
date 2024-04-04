@@ -2,10 +2,25 @@
 
 class membro_model extends CI_model{ 
 
-    
     public function index(){
 
-      $query = $this->db->query(" SELECT * FROM Membro;");
+      $query = $this->db->query("SELECT * FROM membro m
+      LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID;");
+
+      // $query = $this->db->query("SELECT * FROM membro m;");
+      return $query->result_array();
+      #return $this->db->get('membro')->result_array();
+      
+    }
+
+
+    public function get_list_membros(){
+
+      // $query = $this->db->query("SELECT * FROM membro m
+      // LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID;");
+
+        $query = $this->db->query("SELECT m.MembroID, m.Nome, amp.DataTermino FROM membro m
+        LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID ;");
       return $query->result_array();
       #return $this->db->get('membro')->result_array();
       
@@ -66,6 +81,14 @@ class membro_model extends CI_model{
       return $this->db->get_where('associacao_membro_plano', array('MembroID'=> $id))->row_array();
       //  return $query->row_array();
 
+    }
+
+
+
+    public function update_membro_plano($id, $planoMembro){
+
+      $this->db->where('MembroID', $id);
+      return $this->db->update('associacao_membro_plano', $planoMembro);
     }
 
 }

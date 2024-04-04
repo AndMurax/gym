@@ -13,7 +13,10 @@ class Membro extends CI_Controller{
     public function index(){
         permission();
     
-        $data["membros"] = $this->membro_model->index();
+        $membros = $data["membros"] = $this->membro_model->get_list_membros();
+
+        // var_dump($membros);
+        // die;
         $data['planostreinos'] = $this->planosTreino_model->index();
         $data["title"] = "Membro - GYM";
 
@@ -44,7 +47,8 @@ class Membro extends CI_Controller{
 
         $membro = $_POST;
         $this->membro_model->store($membro);
-
+        
+            
         redirect("membro");
     }
 
@@ -70,8 +74,8 @@ class Membro extends CI_Controller{
     public function edit($id){
         permission();
      
-        $data["title"] = "Editar membro - GYM";
-        $membro = $data["membro"] = $this->membro_model->show($id);
+        $data["title"] = "Editar Membro - GYM";
+        $data["membro"] = $this->membro_model->show($id);
         $data['planostreinos'] = $this->planosTreino_model->index();
 
         // echo '<pre>';
@@ -113,22 +117,9 @@ class Membro extends CI_Controller{
     public function update($id){
         permission();
 
-        if(isset($_POST['DataInicio'])){
-            $dataInicio = new DateTime($_POST['DataInicio']);
-            $membroPlano = array('MembroID' => $id,
-                            'PlanoID' => $_POST['PlanoID'],
-                            'DataInicio'=> $dataInicio->format('y-m-d'),
-                            'DataTermino' => $dataInicio->modify('+30 days')->format('y-m-d'));
-
-            // var_dump($membroPlano);
-            // die;
-        
-           $this->membro_model->set_membro_plano($membroPlano);
-
-        }else {
             $membro = $_POST;
             $this->membro_model->update($id ,$membro);
-        }
+      
         
         redirect("membro");
     }
