@@ -12,7 +12,7 @@
 				<tr>
 					<th>#</th>
 					<th>Nome</th>
-					<th>Tempo Restante</th>
+					<th>Dias Restantes</th>
 					<th>Actions</th>
 				</tr>
 			</thead>

@@ -10,6 +10,7 @@ class Dashboard extends CI_Controller{
         $this->load->model("membro_model");
         $this->load->model("users_model");
         $this->load->model("planosTreino_model");
+        $this->load->model("membro_plano_model");
         $this->load->library('session');
     
 	}
@@ -18,10 +19,15 @@ class Dashboard extends CI_Controller{
 
         $data["membros"] = $this->membro_model->index();
         $data['usuarios'] = $this->users_model->index();
-        $data['valor_mensal'] = $this->planosTreino_model->total_planos();
+        $mensal = $data['valor_mensal'] = $this->planosTreino_model->get_valor_mensal_total(); 
+        $data['valor_anual'] = $this->planosTreino_model->get_valor_anual_total();
         $total = $data['total_membros'] = $this->membro_model->get_total_membros();
         $data["title"] = "Dashboard - GYM";
         $data["user"] = $this->session->has_userdata('Logged_user');
+
+        // var_dump($mensal);
+        // die;
+
 
         // var_dump($total);
         // exit;

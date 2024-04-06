@@ -45,5 +45,33 @@ class planosTreino_model extends CI_model{
 
     }
 
+    public function get_valor_mensal_total(){
+
+      $query = $this->db->query("SELECT sum(pt.PrecoPlano)  as total FROM membro m
+      INNER JOIN planostreino pt on pt.PlanoID = m.PlanoID
+      INNER JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID 
+      INNER JOIN (SELECT MembroID,dateDIFF(CURRENT_DATE() , amp.DataTermino ) as dias_restante 
+      from associacao_membro_plano amp 
+      where dateDIFF(amp.DataTermino, current_date) between 0 and 30) dias on dias.MembroID = m.MembroID
+      WHERE m.Ativo = 1 ;");
+
+      return $query->row_array();
+
+    }
+
+
+    public function get_valor_anual_total(){
+
+      $query = $this->db->query("SELECT sum(pt.PrecoPlano) as total FROM membro m
+      INNER JOIN planostreino pt on pt.PlanoID = m.PlanoID
+      INNER JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID 
+      INNER JOIN (SELECT MembroID, year(amp.DataTermino) as ano
+      from associacao_membro_plano amp where year(amp.DataTermino) = year(now())) dias on dias.MembroID = m.MembroID
+      WHERE m.Ativo = 1 ;");
+
+      return $query->row_array();
+
+    }
+
 }
 
