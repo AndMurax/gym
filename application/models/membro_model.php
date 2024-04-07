@@ -5,7 +5,7 @@ class membro_model extends CI_model{
     public function index(){
 
       $query = $this->db->query("SELECT * FROM membro m
-      LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID;");
+      LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID WHERE deleted_at is null;");
 
       // $query = $this->db->query("SELECT * FROM membro m;");
       return $query->result_array();
@@ -20,7 +20,7 @@ class membro_model extends CI_model{
       // LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID;");
 
         $query = $this->db->query("SELECT m.MembroID, m.Nome, amp.DataTermino FROM membro m
-        LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID ;");
+        LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID WHERE deleted_at is null;");
       return $query->result_array();
       #return $this->db->get('membro')->result_array();
       
@@ -53,10 +53,11 @@ class membro_model extends CI_model{
       return $this->db->update('membro', $membro);
     }
 
-    public function delete($id){
+    public function delete($id, $membro){
 
+      // return $this->db->query("UPDATE membro SET deleted_at = $membro WHERE MembroID = $id");
       $this->db->where('MembroID', $id);
-      return $this->db->delete('membro');
+      return $this->db->update('membro', $membro);
     }
 
     public function verificar_cpf_cadastrado($cpf){

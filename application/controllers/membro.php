@@ -45,7 +45,23 @@ class Membro extends CI_Controller{
     public function store(){
         permission();
 
-        $membro = $_POST;
+        $membro = array(
+            'Nome' => $_POST['Nome'],
+            'CPF' => $_POST['CPF'],
+            'Sobrenome' => $_POST['Sobrenome'],
+            'DataNascimento' => $_POST['DataNascimento'],
+            'Genero' => $_POST['Genero'],
+            'Peso' => $_POST['Peso'],
+            'Altura' => $_POST['Altura'],
+            'Endereco' => $_POST['Endereco'],
+            'Telefone' => $_POST['Telefone'],
+            'DataInscricao' => $_POST['DataInscricao'],
+            'PlanoID' => $_POST['PlanoID'],
+            'Ativo' => $_POST['Ativo'],
+            'created_at' => date("Y-m-d H:i:s"));
+        
+        // var_dump($membro);
+        // die;
         $this->membro_model->store($membro);
         
             
@@ -117,10 +133,28 @@ class Membro extends CI_Controller{
     public function update($id){
         permission();
 
-            $membro = $_POST;
-            $this->membro_model->update($id ,$membro);
-      
-        
+        $membro = array(
+            'MembroID' => $id,
+            'Nome' => $_POST['Nome'],
+            'CPF' => $_POST['CPF'],
+            'Sobrenome' => $_POST['Sobrenome'],
+            'DataNascimento' => $_POST['DataNascimento'],
+            'Genero' => $_POST['Genero'],
+            'Peso' => $_POST['Peso'],
+            'Altura' => $_POST['Altura'],
+            'Endereco' => $_POST['Endereco'],
+            'Telefone' => $_POST['Telefone'],
+            'DataInscricao' => $_POST['DataInscricao'],
+            'PlanoID' => $_POST['PlanoID'],
+            'Ativo' => $_POST['Ativo'],
+            'updated_at' => date("Y-m-d H:i:s"));
+           
+        // echo '<pre>';
+        // print_r($membro);
+        // echo '<pre>';
+        // die();
+
+        $this->membro_model->update($id ,$membro);
         redirect("membro");
     }
 
@@ -128,8 +162,17 @@ class Membro extends CI_Controller{
     public function delete($id){
         permission();
 
-        $membro = $_POST;
-        $this->membro_model->delete($id);
+        $membro = array( 'MembroID' => $id,
+            "deleted_at" => date("Y-m-d")   
+        );
+
+        
+        echo '<pre>';
+        print_r($membro);
+        echo '<pre>';
+        die();
+
+        $this->membro_model->delete($id, $membro);
 
         redirect("membro");
     }

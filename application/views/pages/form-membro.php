@@ -83,8 +83,8 @@ $( "#Peso" ).blur(function() {
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="sobrenome">Sobrenome:</label>
-							<input  name="sobrenome" id="sobrenome" type="text" class="form-control" required
+							<label for="Sobrenome">Sobrenome:</label>
+							<input  name="Sobrenome" id="Sobrenome" type="text" class="form-control" required
 							 value="<?= isset($membro) ? $membro["Sobrenome"] : null ?>">
 							
 						</div>
@@ -92,8 +92,8 @@ $( "#Peso" ).blur(function() {
 
 					<div class="col-md-6">
 						<div class="form-group" id="cpfForm">
-							<label for="cpf">CPF:</label>
-							<input  name="cpf" id="cpf" type="text" min="14" class="form-control" required
+							<label for="CPF">CPF:</label>
+							<input  name="CPF" id="CPF" type="text" min="14" class="form-control" required
 							 value="<?= isset($membro) ? $membro["CPF"] : null ?>">
 							
 						</div>
@@ -109,8 +109,8 @@ $( "#Peso" ).blur(function() {
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="genero">Genero:</label>
-							<select class="form-control" id="genero" name="genero">
+							<label for="Genero">Genero:</label>
+							<select class="form-control" id="Genero" name="Genero">
 							<?php if (isset($membro)) {
 								// Extrai o valor de 'Ativo' da primeira linha do resultado
 								$ativo = $membro['Genero'];
@@ -173,7 +173,7 @@ $( "#Peso" ).blur(function() {
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="Planos">Planos:</label>
-						<select class="form-control" id="planoID" name="planoID">
+						<select class="form-control" id="PlanoID" name="PlanoID">
 							<option value="" selected>Selecione:</option>
 							<?php foreach ($planostreinos as $planostreino) : ?>
 								<?php 

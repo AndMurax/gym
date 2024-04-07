@@ -22,43 +22,24 @@
 					$dataTermino = new DateTime($membro['DataTermino']);
 					?>
 				<tr>
-				<td><?=$membro['MembroID'] ?></td>
+					<td><?=$membro['MembroID'] ?></td>
                     <td><?=$membro['Nome'] ?></td>
                     <td><?=$hoje->diff($dataTermino)->days?></td>
                  
-					<td>
+					<td><!--Botão de editar  -->
 						<a href="<?= base_url()?>index.php/membro/edit/<?= $membro['MembroID']?>" class= "btn btn-warning">
 							<i class= "fas fa-pencil-alt "></i>
 						</a>
+						<!--Botão de Data de Pagamento  -->
 						<a href="<?= base_url()?>index.php/membroPlano/edit/<?= $membro['MembroID']?>" class= "btn btn-success">
 							<i class= "fas fa-solid fa-user"></i>
 						</a>
-						<a href="#deleteModal" class= "btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-							<i class= "fas fa-trash-alt "></i>
+						<!--Botão de Excluir -->
+						<a href="<?= base_url()?>index.php/membro/delete/<?= $id = $membro['MembroID']?>" class= "btn btn-danger">
+							<i class= "fas fa-trash-alt >"> <?= $id = $membro['MembroID']?></i>
 						</a>
-
-						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Excluir?</h5>
-									<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">×</span>
-									</button>
-								</div>
-									<div class="modal-body">Você tem certeza de que deseja deletar este item?</div>
-										<div class="modal-footer">
-													<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-													<a class="btn btn-primary" href="<?= base_url()?>index.php/membro/delete/<?= $membro['MembroID']?>">Sim</a>
-										</div>
-							</div>
-						</div>
-					</div>
 					</td>
-
-          		</tr>
                 </tr>
-
                 <?php endforeach ?>
 			</tbody>
 		</table>

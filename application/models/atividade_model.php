@@ -5,7 +5,7 @@ class atividade_model extends CI_model{
     
     public function index(){
 
-      $query = $this->db->query(" SELECT * FROM atividade WHERE deleted_at is null;");
+      $query = $this->db->query("SELECT * FROM atividade WHERE deleted_at is null;");
 
       return $query->result_array();
       #return $this->db->get('atividade')->result_array();
