@@ -167,10 +167,10 @@ class Membro extends CI_Controller{
         );
 
         
-        echo '<pre>';
-        print_r($membro);
-        echo '<pre>';
-        die();
+        // echo '<pre>';
+        // print_r($membro);
+        // echo '<pre>';
+        // die();
 
         $this->membro_model->delete($id, $membro);
 

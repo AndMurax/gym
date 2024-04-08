@@ -36,7 +36,7 @@
 						</a>
 						<!--Botão de Excluir -->
 						<a href="<?= base_url()?>index.php/membro/delete/<?= $id = $membro['MembroID']?>" class= "btn btn-danger">
-							<i class= "fas fa-trash-alt >"> <?= $id = $membro['MembroID']?></i>
+							<i class= "fas fa-trash-alt >"></i>
 						</a>
 					</td>
                 </tr>
