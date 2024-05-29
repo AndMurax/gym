@@ -13,7 +13,6 @@ class membro_model extends CI_model{
       
     }
 
-
     public function get_list_membros(){
 
       // $query = $this->db->query("SELECT * FROM membro m
@@ -41,7 +40,7 @@ class membro_model extends CI_model{
 
     public function get_total_membros(){
 
-      $query = $this->db->query("SELECT count(m.MembroID) as total FROM membro m where ativo = 1;");
+      $query = $this->db->query("SELECT count(m.MembroID) as total FROM membro m where ativo = 1 and m.deleted_at is  null;");
    
       return $query->row_array();
 

@@ -40,7 +40,7 @@ class planosTreino_model extends CI_model{
 
     public function total_planos(){
 
-      $query = $this->db->query("SELECT sum(pt.PrecoPlano) total from membro m inner join planostreino pt on pt.PlanoID = m.planoID where m.ativo = 1;");
+      $query = $this->db->query("SELECT sum(pt.PrecoPlano) total from membro m inner join planostreino pt on pt.PlanoID = m.planoID where m.ativo = 1 and m.deleted_at is  null; ");
       return $query->row_array();
 
     }
