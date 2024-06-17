@@ -2,11 +2,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
 
 $(document).ready(function () {
-
-	validarCPF();
 	
 	$('#Altura').blur(function() {
 		this.value = parseFloat(this.value).toFixed(3);
@@ -15,13 +14,10 @@ $(document).ready(function () {
 	$('#Peso').blur(function() {
 		this.value = parseFloat(this.value).toFixed(3);
 	});	
-
-
-	
 	
 });
 function validarCPF() {
-			$('#membro').submit(function(e) {
+			$('#membro').click(function(e) {
                     var cpf = $('#cpfForm').val().replace(/[^\d]+/g,''); // remove caracteres não numéricos
 
                     if(cpf == '' || cpf.length != 11) {
@@ -87,12 +83,12 @@ function validarCPF() {
 				<form action="<?= base_url() ?>index.php/membro/store" method="post">
 				<?php endif ?>
 
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="nome">Nome:</label>
-								<input type="text" class="form-control" name="Nome" id="Nome" placeholder="Nome" required value="<?= isset($membro) ? $membro["Nome"] : null ?>">
-							</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="nome">Nome:</label>
+							<input type="text" class="form-control" name="Nome" id="Nome" placeholder="Nome" required value="<?= isset($membro) ? $membro["Nome"] : null ?>">
 						</div>
+					</div>
 
 						<div class="col-md-6">
 							<div class="form-group">
@@ -224,7 +220,7 @@ function validarCPF() {
 						</div>
 
 					<div class="col-md-6">
-							<button type="submit" class="btn btn-success btn-xs"><i class="fas fa-check"></i> Salvar</button>
+							<button type="submit" class="btn btn-success btn-xs"><i class="fas fa-check" onclick="validarCPF()"></i> Salvar</button>
 							<a href="<?=base_url()?>index.php/membro" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> Cancelar</a>
 					</div>
 					</div>

@@ -61,10 +61,9 @@ class membro_model extends CI_model{
 
     public function verificar_cpf_cadastrado($cpf){
 
-      //$query = $this->db->query("SELECT MembroID FROM `membro` WHERE CPF =;");
-      return $this->db->get_where('membro', array('CPF'=> $cpf))->row_array();
-      //return $query->row_array();
 
+      return $this->db->get_where('membro', array('CPF'=> $cpf))->row();
+      
     }
 
 }

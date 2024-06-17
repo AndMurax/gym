@@ -27,13 +27,25 @@ class Membro extends CI_Controller{
         $this->load->view('includes/scripts', $data);
     }
 
+    public function new_membro(){
+        permission();
 
+        $data["title"] = "1ª Etapa - Cadastro membro - GYM";
+        
+
+        $this->load->view('includes/header', $data);
+        $this->load->view('includes/navbar', $data);
+        $this->load->view('pages/new-membro', $data);
+        $this->load->view('includes/footer', $data);
+        $this->load->view('includes/scripts', $data);
+
+    }
     public function new(){
         permission();
     
+       
         $data["title"] = "Cadastro membro - GYM";
         $data['planostreinos'] = $this->planosTreino_model->index();
-
         $this->load->view('includes/header', $data);
         $this->load->view('includes/navbar', $data);
         $this->load->view('pages/form-membro', $data);
@@ -176,6 +188,18 @@ class Membro extends CI_Controller{
 
         redirect("membro");
     }
-    
-    
+
+
+    public function ajaxVerificarMembro() {
+        $cpf = $this->input->post('CPF', true); 
+        $membro = $this->membro_model->verificar_cpf_cadastrado($cpf);
+
+        if (empty($membro)) {
+            $response = 'nao';
+        } else {
+            $response = $membro->MembroID;
+        }
+
+        echo json_encode($response);
+    }
 }

@@ -2,7 +2,7 @@
 	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h1 class="h2">Membros</h1>
 		<div class="btn-group mr-4">
-			<a href="<?=base_url()?>index.php/membro/new" class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus-square"></i> Membro</a>
+			<a href="<?=base_url()?>index.php/membro/new_membro" class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus-square"></i> Membro</a>
 		</div>
 	</div>
 
