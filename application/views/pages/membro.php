@@ -20,11 +20,18 @@
                 <?php foreach($membros as $membro):
 					$hoje = new DateTime(date("Y-m-d"));
 					$dataTermino = new DateTime($membro['DataTermino']);
+
+					if ( $dataTermino < $hoje) {
+						$days = 0;
+					}else {
+						$days = $hoje->diff($dataTermino)->days;
+					}
+
 					?>
 				<tr>
 					<td><?=$membro['MembroID'] ?></td>
                     <td><?=$membro['Nome'] ?></td>
-                    <td><?=$hoje->diff($dataTermino)->days?></td>
+                    <td><?=$days?></td>
                  
 					<td><!--Botão de editar  -->
 						<a href="<?= base_url()?>index.php/membro/edit/<?= $membro['MembroID']?>" class= "btn btn-warning">
