@@ -48,12 +48,11 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
         aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-user"></i>
-        <span>Admistração</span>
+        <span>Administração</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item" href="<?=base_url()?>index.php/membro">Membros</a>
                         <a class="collapse-item" href="<?=base_url()?>index.php/users">Usuários</a>
                         <a class="collapse-item" href="<?=base_url()?>index.php/instrutor">Instrutores</a>
@@ -68,9 +67,13 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
         aria-expanded="true" aria-controls="collapsePages">
         <i class="fas fa-fw fa-folder"></i>
-        <span>Finançãs</span>
+        <span>Finanças</span>
     </a>
-    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+    <div id="collapsePages" class="collapse" aria-labelledby="headingPages"                     data-parent="#accordionSidebar">
+        
+            <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?=base_url()?>index.php/pessoa">Pessoa</a>
+            </div>
 </li>
 <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>

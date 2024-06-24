@@ -48,10 +48,8 @@ class planosTreino extends CI_Controller {
      
         $data["title"] = "Editar planostreino - GYM";
         $debugar = $data["planostreino"] = $this->planostreino_model->show($id);
+        
 
-
-        var_dump($debugar);
-        exit;
 
         $this->load->view('includes/header', $data);
         $this->load->view('includes/navbar', $data);
