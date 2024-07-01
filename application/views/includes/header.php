@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="<?=base_url('application\views\vendor\Vue.js\vue.js')?>"></script>
     <script src="<?=base_url('application\views\vendor\jquery\jquery.min.js')?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 
