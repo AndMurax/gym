@@ -27,6 +27,7 @@
     <script src="<?=base_url('application\views\vendor\Vue.js\vue.js')?>"></script>
     <script src="<?=base_url('application\views\vendor\jquery\jquery.min.js')?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="<?=base_url('node_modules\select2\dist\js\select2.full.min.js')?>"></script>
 
 
 </head>
