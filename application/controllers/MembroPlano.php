@@ -40,14 +40,13 @@ class MembroPlano extends CI_Controller {
     public function store($id){
         permission();
 
-        $dataInicio = new DateTime($_POST['DataInicio']);
+        $DataPagamento = new DateTime($_POST['DataPagamento']);
         $membroPlano = array('MembroID' => $id,
                         'PlanoID' => $_POST['PlanoID'],
-                        'DataInicio'=> $dataInicio->format('y-m-d'),
-                        'DataTermino' => $dataInicio->modify('+30 days')->format('y-m-d'));
-
-        // var_dump($membroPlano);
-        // die;
+                        'DataPagamento'=>$_POST['DataPagamento'],
+                        'statusPagamento'=>$_POST['statusPagamento'],
+                        'DiaPagamento'=>$_POST['DiaPagamento'],
+                        'DataTermino' => $DataPagamento->modify('+30 days')->format('y-m-d'));
     
        $this->membro_plano_model->store($membroPlano);
 
@@ -59,7 +58,7 @@ class MembroPlano extends CI_Controller {
      
         $data["title"] = "Editar Plano Membro - GYM";
         $data["membroPlano"] = $this->membro_plano_model->show($id);
-        $membro = $data["membro"] = $this->membro_model->show($id);
+        $data["membro"] = $this->membro_model->show($id);
         $data['planostreinos'] = $this->planosTreino_model->index();
 
         $this->load->view('includes/header', $data);
@@ -72,12 +71,13 @@ class MembroPlano extends CI_Controller {
 
     public function update($id){
         permission();
-        $dataInicio = new DateTime($_POST['DataInicio']);
+        $DataPagamento = new DateTime($_POST['DataPagamento']);
         $membroPlano = array('MembroID' => $id,
                         'PlanoID' => $_POST['PlanoID'],
-                        'DataInicio'=> $dataInicio->format('y-m-d'),
-                        'DataTermino' => $dataInicio->modify('+30 days')->format('y-m-d'));
-
+                        'DataPagamento'=>$_POST['DataPagamento'],
+                        'statusPagamento'=>$_POST['statusPagamento'],
+                        'DiaPagamento'=>$_POST['DiaPagamento'],
+                        'DataTermino' => $DataPagamento->modify('+30 days')->format('y-m-d'));
         // var_dump($membroPlano);
         // die;
     

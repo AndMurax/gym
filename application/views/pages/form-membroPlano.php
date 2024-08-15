@@ -1,10 +1,12 @@
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2"></h1>
       </div>
 
 			<div class="col-md-12">
-			<?php if(isset($membroPlano['DataInicio'])) : ?>
+			<?php if(isset($membroPlano['DataPagamento'])) : ?>
 			 <form action="<?= base_url() ?>index.php/MembroPlano/update/<?= $membro['MembroID'] ?>" method="post" onsubimit="return ValidarCampos()">
 			<?php else : ?>
 			 <form  action="<?= base_url() ?>index.php/MembroPlano/store/<?= $membro['MembroID'] ?>" method="post" onsubimit="return ValidarCampos()">
@@ -18,11 +20,48 @@
 							
 						</div>
 					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="DataPagamento">Data de Pagamento:</label>
+							<input type="date" class="form-control" name="DataPagamento" id="DataPagamento" placeholder="Data de Pagamento" value="<?= isset($membroPlano) ? $membroPlano["DataPagamento"] : null ?>">
+						</div>
+					</div>
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="DataInscricao">Data de Pagemento:</label>
-							<input type="date" class="form-control" name="DataInicio" id="DataInicio" placeholder="Data de Pagamento" value="<?= isset($membroPlano) ? $membroPlano["DataInicio"] : null ?>">
+							<label for="DiaPagamento">Dia de Pagamento:</label>
+							<select class="form-control" name="DiaPagamento" id="DiaPagamento">
+								<option value="selecione">Selecione o dia</option>
+								<?php for($i = 1; $i <= 31; $i++): ?>
+									<option value="<?= $i ?>" <?= isset($membroPlano) && $membroPlano["DiaPagamento"] == $i ? 'selected' : '' ?>>
+										<?= $i ?>
+									</option>
+								<?php endfor; ?>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="StatusPagamento">Status:</label>
+							<select class="form-control" id="statusPagamento" name="statusPagamento">
+						<?php if (isset($membro)) {
+								// Extrai o valor de 'Ativo' da primeira linha do resultado
+								$statusPagamento = $membro['statusPagamento'];
+								// Verifica se $ativo é igual a 1 ou 0 e define 'selected' para a opção correspondente
+								$pagoSelecionado = ($statusPagamento == 1) ? 'selected' : '';
+								$vencidoSelecionado = ($statusPagamento == 0) ? 'selected' : '';
+							// Cria as opções do select com os valores do banco de dados
+								echo '<option value="1" ' . $pagoSelecionado . '>Pago</option>';
+								echo '<option value="0" ' . $vencidoSelecionado . '>Vencido</option>';
+							} else {
+								echo '<option seleted value="selecione">..Selecione..</option>';
+								echo '<option value="1">Pago</option>';
+								echo '<option value="0">Vencido</option>';
+							}
+						?>
+							</select>
 						</div>
 					</div>
 
@@ -42,6 +81,8 @@
 						</select>
 					</div>
 				</div>
+
+				
 
 					<div class="col-md-6">
 						<div class="form-group">
@@ -79,10 +120,21 @@
 
 <script type="text/Javascript">
 
+	// function ValidarCampos(){
+	// 	if(document.form-control.DataPagamento.value == "selecione"){
+	// 		alert('Por favor, preencha o campo');
+	// 		document.form-control.DataPagamento.focus();
+	// 	}
+	// }
+
 	function ValidarCampos(){
-		if(document.form-group.DataInicio.value == ""){
-			alert('Por favor, preenchar o campo');
-			document.form-group.DataInicio.focus();
-		}
+	  let DataPagamento = $('#DataPagamento').val();
+
+	  if (DataPagamento == 'selecione'){
+		$('#DataPagamento').focus();
+	  }
+
 	}
+
+	
 </script>

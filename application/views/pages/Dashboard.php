@@ -110,7 +110,7 @@
 	    
 
 	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-		<h2 class="h2"> Ultimos Membros </h2>
+		<h2 class="h2"> Últimos Membros </h2>
 	</div>
 
 	
@@ -121,6 +121,8 @@
 					<th>#</th>
 					<th>Name</th>
 					<th>CPF</th>
+                    <th>Dia pagamento</th>
+                    <th>Data do ultimo pagamento</th>
 					<th>Data Inscrição</th>
 				</tr>
 			</thead>
@@ -130,6 +132,8 @@
                     <td><?=$membro['MembroID'] ?></td>
                     <td><?=$membro['Nome'] ?></td>
                     <td><?=$membro['CPF'] ?></td>
+                    <td><?=$membro['DiaPagamento'] ?></td>
+                    <td><?=$membro['DataPagamento'] ?></td>
 					<td><?=date( 'd/m/Y' , strtotime($membro['DataInscricao']))?></td>
 				</tr>
 				<?php endforeach; ?>
