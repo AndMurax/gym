@@ -5,7 +5,7 @@ class membro_model extends CI_model{
     public function index(){
 
       $query = $this->db->query("SELECT * FROM membro m
-      LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID WHERE deleted_at is null;");
+      LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID WHERE m.deleted_at is null;");
 
       // $query = $this->db->query("SELECT * FROM membro m;");
       return $query->result_array();
@@ -19,7 +19,7 @@ class membro_model extends CI_model{
       // LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID;");
 
         $query = $this->db->query("SELECT m.MembroID, m.Nome, amp.DataTermino FROM membro m
-        LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID WHERE deleted_at is null;");
+        LEFT JOIN associacao_membro_plano amp ON amp.MembroID = m.MembroID WHERE m.deleted_at is null;");
       return $query->result_array();
       #return $this->db->get('membro')->result_array();
       

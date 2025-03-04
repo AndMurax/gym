@@ -5,7 +5,7 @@ class atividade_model extends CI_model{
     
     public function index(){
 
-      $query = $this->db->query("SELECT * FROM atividade WHERE deleted_at is null;");
+      $query = $this->db->query("SELECT * FROM atividade a  WHERE a.deleted_at is null;");
 
       return $query->result_array();
       #return $this->db->get('atividade')->result_array();
@@ -20,7 +20,7 @@ class atividade_model extends CI_model{
     public function show($id){
 
 
-      //$query = $this->db->query("SELECT * from atividade;");
+      //$query = $this->db->query("SELECT * FROM atividade a;");
      return $this->db->get_where('atividade', array('atividadeID'=> $id))->row_array();
       //return $query->row_array();
 
