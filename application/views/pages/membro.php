@@ -19,12 +19,12 @@
 			<tbody>
                 <?php foreach($membros as $membro):
 					$hoje = new DateTime(date("Y-m-d"));
-					$dataTermino = new DateTime($membro['DataTermino']);
+					$dataTermino = !empty($membro['DataTermino']) ? new DateTime($membro['DataTermino']) : null;
 
-					if ( $dataTermino < $hoje) {
+					if ( $dataTermino !== null && $dataTermino < $hoje) {
 						$days = 0;
 					}else {
-						$days = $hoje->diff($dataTermino)->days;
+						$days = $dataTermino !== null ? $hoje->diff($dataTermino)->days : 0;
 					}
 
 					?>
@@ -52,4 +52,3 @@
 		</table>
 	</div>
 </main>
-

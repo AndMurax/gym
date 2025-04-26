@@ -132,8 +132,16 @@
                     <td><?=$membro['MembroID'] ?></td>
                     <td><?=$membro['Nome'] ?></td>
                     <td><?=$membro['CPF'] ?></td>
-                    <td><?=$membro['DiaPagamento'] ?></td>
-                    <td><?=$membro['DataPagamento'] ?></td>
+                    <?php if (isset($membro['DiaPagamento'])): ?>
+                        <td><?=$membro['DiaPagamento'] ?></td>
+                    <?php else: ?>
+                        <td><span>N/A</span></td>
+                    <?php endif; ?>
+                    <?php if (isset($membro['DataPagamento'])): ?>
+                        <td><?=$membro['DataPagamento'] ?></td>
+                    <?php else: ?>
+                        <td><span>N/A</span></td>
+                    <?php endif; ?>
 					<td><?=date( 'd/m/Y' , strtotime($membro['DataInscricao']))?></td>
 				</tr>
 				<?php endforeach; ?>

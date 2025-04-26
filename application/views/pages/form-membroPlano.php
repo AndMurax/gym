@@ -7,9 +7,9 @@
 
 			<div class="col-md-12">
 			<?php if(isset($membroPlano['DataPagamento'])) : ?>
-			 <form action="<?= base_url() ?>index.php/MembroPlano/update/<?= $membro['MembroID'] ?>" method="post" onsubimit="return ValidarCampos()">
+			 <form action="<?= base_url() ?>index.php/MembroPlano/update/<?= $membro['MembroID'] ?>" method="post" onsubmit="return ValidarCampos()">
 			<?php else : ?>
-			 <form  action="<?= base_url() ?>index.php/MembroPlano/store/<?= $membro['MembroID'] ?>" method="post" onsubimit="return ValidarCampos()">
+			 <form  action="<?= base_url() ?>index.php/MembroPlano/store/<?= $membro['MembroID'] ?>" method="post" onsubmit="return ValidarCampos()">
 			<?php endif ?>
 				<h1> Membro Plano de <?= $membro['Nome'];?></h1>
 					<div class="col-md-6">
@@ -23,7 +23,10 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="DataPagamento">Data de Pagamento:</label>
-							<input type="date" class="form-control" name="DataPagamento" id="DataPagamento" placeholder="Data de Pagamento" value="<?= isset($membroPlano) ? $membroPlano["DataPagamento"] : null ?>">
+							<?php $dataPagamento = $membroPlano['DataPagamento'] ?? null; ?>
+							<input type="date" class="form-control" name="DataPagamento" id="DataPagamento" 
+								placeholder="Data de Pagamento" 
+								value="<?= !empty($dataPagamento) ? htmlspecialchars($dataPagamento) : '' ?>">
 						</div>
 					</div>
 
@@ -31,12 +34,14 @@
 						<div class="form-group">
 							<label for="DiaPagamento">Dia de Pagamento:</label>
 							<select class="form-control" name="DiaPagamento" id="DiaPagamento">
-								<option value="selecione">Selecione o dia</option>
-								<?php for($i = 1; $i <= 31; $i++): ?>
-									<option value="<?= $i ?>" <?= isset($membroPlano) && $membroPlano["DiaPagamento"] == $i ? 'selected' : '' ?>>
-										<?= $i ?>
-									</option>
-								<?php endfor; ?>
+								<option value="">Selecione o dia</option>
+								<?php 
+								$selectedDay = $membroPlano['DiaPagamento'] ?? null;
+								foreach (range(1, 31) as $day) {
+									$selected = ($selectedDay == $day) ? 'selected' : '';
+									echo "<option value='$day' $selected>$day</option>";
+								}
+								?>
 							</select>
 						</div>
 					</div>
@@ -130,7 +135,7 @@
 	function ValidarCampos(){
 	  let DataPagamento = $('#DataPagamento').val();
 
-	  if (DataPagamento == 'selecione'){
+	  if (DataPagamento == ''){
 		$('#DataPagamento').focus();
 	  }
 
